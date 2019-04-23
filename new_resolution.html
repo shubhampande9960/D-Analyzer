@@ -1,0 +1,167 @@
+
+<!--
+* Title        : D-Analyzer
+* Author       : Abdul Saqib
+* Version      : 1.0.0
+* Organization : Aurus Inc.
+* Website      : http://www.aurusinc.com/
+* License      : GNU General Public License V3.0
+* License URI  : https://www.gnu.org/licenses/gpl-3.0.txt
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/css/style.css">
+    <script src="style/jquery.js"></script>
+    <script src="style/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style/css/font_awesome.css">
+    <script src="style/js.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style/datatable/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="style/datatable/buttons.dataTables.min.css"/>
+
+
+    <title>D-Analyzer - Resolution</title>
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <!-- <img src="images/logo.png"> -->
+        </div>
+        <div class="profile">
+            <img src="images/icon_profile.png">
+            <div class="profile-desc">
+                <p>Abdul Saqib<span><i class="fas fa-circle"></i>Admin</span></p>
+            </div>
+        </div>
+        <nav role="navigation">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span><i class="fas fa-angle-left"></i></a></li>
+                <li class="active"><a href="resolution.html"><i class="fab fa-resolving"></i><span>Resolutions</span></a></li>
+                <li><a href="health_check.html"><i class="fas fa-file-medical-alt"></i><span>Health Check</span><i class="fas fa-angle-left"></i></a></li>
+                <li><a href="decline_report.html"><i class="fas fa-file-invoice"></i><span>Decline Report</span><i class="fas fa-angle-left"></i></a></li>
+                <li><a href="settings.html"><i class="fas fa-cogs"></i><span>Settings</span><i class="fas fa-angle-left"></i></a></li>
+                <li><a href="raise_ticket.html"><i class="fas fa-ticket-alt"></i><span>Raise Ticket</span><i class="fas fa-angle-left"></i></a></li>
+                <li><a href="documentation.html"><i class="fas fa-book"></i><span>Documentation</span><i class="fas fa-angle-left"></i></a></li>
+            </ul>
+        </nav>
+        <div class="network-manager">
+            <div class="network">
+                <a href="#"><i class="fab fa-facebook-square"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter-square"></i></a>
+                <a href="#"><i class="fab fa-google-plus-square"></i></a>
+                <!--<a href="#"><i class="fab fa-instagram"></i></a>-->
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="header-contents">
+            <div class="shortcuts">
+                <button class="btn btn-sm btn-link" onclick="resolve('health_check.html')"><i class="fas fa-file-medical-alt"></i>Health Check</button>
+                <button class="btn btn-sm btn-link" onclick="resolve('resolution.html')"><i class="fab fa-resolving"></i>Resolutions</button>
+                <button class="btn btn-sm btn-link" onclick="resolve('decline_summary.html')"><i class="fas fa-file-invoice"></i>Decline Summary</button>
+                <button class="btn btn-sm btn-link" onclick="resolve('settings.html')"><i class="fas fa-cogs"></i>Settings</button>
+                <a href="login.html"><i class="fas fa-power-off logout"></i></a>
+            </div>
+            <div class="page-title">
+                <img src="images/dashboard.png">
+                <div class="title">
+                    <p>Resolutions<span>Search Analysis</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-sm btn-primary" onclick="resolve('new_resolution.html')"><i class="fab fa-resolving"></i>New Resolution</button>
+                </div>
+                
+<table id="record" class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+              	        <th>Sr. No.</th>
+                            <th>Error Response</th>
+                            <th>Tender Type</th>
+                            <th>Card Type</th>
+                            <th>Card Mode</th>
+                            <th>Fixed</th>
+                            <th>Issue At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Card Not Supported</td>
+                <td>Credit Order</td>
+                <td>Visa</td>
+                <td>EMV</td>
+                <td>v5.26</td>
+               <td>Product Team</td>
+            </tr>
+            <tr>
+               <td>2</td>
+                <td>Double Charged</td>
+                <td>Credit Order</td>
+                <td>MasterCard</td>
+                <td>Swipe</td>
+                <td>v10.04</td>
+               <td>CCT Developer</td>
+            </tr>
+            <tr>
+                 <td>3</td>
+                <td>Format Error</td>
+                <td>Debit Order</td>
+                <td>Visa</td>
+                <td>Manual</td>
+                <td>v5.26</td>
+               <td>Verifone Team</td>
+            </tr>        
+        </tbody>
+    </table>
+                       </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-wrapper">
+            <div class="footer">
+                <p>Copyright &copy; 2019. All rights reserved.</p>
+                <p>Design &amp; Developed by <a href="#">Abdul Saqib</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="style/datatable/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="style/datatable/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="style/datatable/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="style/datatable/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="style/datatable/buttons.bootstrap.min.js"></script>
+<script type="text/javascript" src="style/datatable/jszip.min.js"></script>
+<script type="text/javascript" src="style/datatable/pdfmake.min.js"></script>
+<script type="text/javascript" src="style/datatable/vfs_fonts.js"></script>
+<script type="text/javascript" src="style/datatable/buttons.html5.min.js"></script>
+<script type="text/javascript" src="style/datatable/buttons.print.min.js"></script>
+<script type="text/javascript" src="style/datatable/buttons.colVis.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#record').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [ 'copy', 'csv', 'excel', 'pdf', 'print' ]
+    } );
+} );
+</script>
+
+
+
+</body>
+</html>
