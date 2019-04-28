@@ -1,0 +1,172 @@
+
+<!--
+* Title        : D-Analyzer
+* Author       : Abdul Saqib
+* Version      : 1.0.0
+* Organization : Aurus Inc.
+* Website      : http://www.aurusinc.com/
+* License      : GNU General Public License V3.0
+* License URI  : https://www.gnu.org/licenses/gpl-3.0.txt
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/css/style.css">
+    <script src="style/jquery.js"></script>
+    <script src="style/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style/css/font_awesome.css">
+    <script src="style/js.js"></script>
+
+ <script language="Javascript" type="text/javascript">
+
+function createRequestObject() {
+    var tmpXmlHttpObject;
+    if (window.XMLHttpRequest) {
+            tmpXmlHttpObject = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        tmpXmlHttpObject = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    return tmpXmlHttpObject;
+}
+
+
+var http = createRequestObject();
+
+function makePostRequest() {
+     client=document.frm.client.value;
+     start=document.frm.start.value;
+     end=document.frm.end.value;   
+     
+    http.open('post', 'Searchdeclines.jsp?client=' +client+ '&start=' +start+ '&end=' +end);
+    http.onreadystatechange = processResponse;
+    http.send(null);
+}
+
+function processResponse() {
+    if(http.readyState == 4){
+        var response = http.responseText;
+ document.getElementById('searchresult').innerHTML = response;
+    }
+}
+
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="style/datatable/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="style/datatable/buttons.dataTables.min.css"/>
+
+    <title>D-Analyzer - Decline Report</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <!-- <img src="images/logo.png"> -->
+        </div>
+        <div class="profile">
+            <img src="images/icon_profile.png">
+            <div class="profile-desc">
+                <p>Abdul Saqib<span><i class="fas fa-circle"></i>Admin</span></p>
+            </div>
+        </div>
+        <nav role="navigation">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span><i class="fas fa-angle-left"></i></a></li>
+                <li><a href="resolution.html"><i class="fab fa-resolving"></i><span>Resolutions</span><i class="fas fa-angle-left"></i></a></li>
+                <li><a href="health_check.html"><i class="fas fa-file-medical-alt"></i><span>Health Check</span><i class="fas fa-angle-left"></i></a></li>
+                <li class="active"><a href="decline_report.html"><i class="fas fa-file-invoice"></i><span>Decline Report</span></a></li>
+                <li><a href="settings.html"><i class="fas fa-cogs"></i><span>Settings</span><i class="fas fa-angle-left"></i></a></li>
+                <li><a href="raise_ticket.html"><i class="fas fa-ticket-alt"></i><span>Raise Ticket</span><i class="fas fa-angle-left"></i></a></li>
+                <li><a href="documentation.html"><i class="fas fa-book"></i><span>Documentation</span><i class="fas fa-angle-left"></i></a></li>
+            </ul>
+        </nav>
+        <div class="network-manager">
+            <div class="network">
+                <a href="#"><i class="fab fa-facebook-square"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter-square"></i></a>
+                <a href="#"><i class="fab fa-google-plus-square"></i></a>
+                <!--<a href="#"><i class="fab fa-instagram"></i></a>-->
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="header-contents">
+            <div class="shortcuts">
+                <button class="btn btn-sm btn-link" onclick="resolve('health_check.html')"><i class="fas fa-file-medical-alt"></i>Health Check</button>
+                <button class="btn btn-sm btn-link" onclick="resolve('resolution.html')"><i class="fab fa-resolving"></i>Resolutions</button>
+                <button class="btn btn-sm btn-link" onclick="resolve('decline_summary.html')"><i class="fas fa-file-invoice"></i>Decline Summary</button>
+                <button class="btn btn-sm btn-link" onclick="resolve('settings.html')"><i class="fas fa-cogs"></i>Settings</button>
+                <a href="login.html"><i class="fas fa-power-off logout"></i></a>
+            </div>
+            <div class="page-title">
+                <img src="images/dashboard.png">
+                <div class="title">
+                    <p>Decline Report<span>Summary</span></p>
+                </div>
+            </div>
+        </div>
+             
+                 <div class="main">
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-sm btn-primary" onclick="resolve('decline_report.html')"><i class="fas fa-file-invoice"></i>Decline Report</button>
+                </div>
+                <div class="card-body">
+                    <form  name="frm">
+                        <div class="form-group form-row">
+                            <label for="client" class="col-sm-2 col-form-label">Client</label>
+                            <div class="col-sm-10">
+                                <select class="form-control form-control-sm" name="client" id="client">
+                                    <option hidden selected>Please Select Client</option>
+                                    <option>All Clients</option>
+                                    <option>GNC</option>
+                                    <option>GNC Franchise</option>
+                                    <option>KWI</option>
+                                    <option>VFC</option>
+                                </select>
+                            </div>
+                        </div>
+                           <div class="form-group form-row">
+                            <label for="start" class="col-sm-2 col-form-label">From</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="start" id="start" class="form-control form-control-sm" placeholder="Start Date">
+                            </div>
+                        </div>
+                        <div class="form-group form-row">
+                            <label for="end" class="col-sm-2 col-form-label">To</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="end" id="end" class="form-control form-control-sm" placeholder="Start Date">
+                            </div>
+                        </div>
+                        
+                        <div class="form-button offset-2">
+                            <input type="button" value="Cancel" onclick="history.back()">
+                            <input type="button" value="Search" onclick="makePostRequest()">
+                            
+                        </div>
+                    </form>
+                </div>
+                
+                    <center> <div id="searchresult"></div> </center>
+                    <br>
+            </div>
+            
+            
+        </div>
+        <div class="footer-wrapper">
+            <div class="footer">
+                <p>Copyright &copy; 2019. All rights reserved.</p>
+                <p>Design &amp; Developed by <a href="#">Abdul Saqib</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
