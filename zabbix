@@ -1,0 +1,39 @@
+import java.io.FileReader;
+import java.util.Iterator;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+ 
+public class Jason2 {
+ 
+    @SuppressWarnings("unchecked")
+    public static void main(String[] args) {
+        JSONParser parser = new JSONParser();
+ 
+        try {
+ 
+            Object obj = parser.parse(new FileReader(
+                    "C://Users//sree//Desktop/ZABBIXnew.txt"));
+ 
+            JSONObject jsonObject = (JSONObject) obj;
+ 
+            String response1 = (String) jsonObject.get("72.6");
+            String response2 = (String) jsonObject.get("91.1.7");
+       
+            JSONArray companyList = (JSONArray) jsonObject.get("messages");
+ 
+           System.out.println("Response Message 1 : " + response1);
+           System.out.println("Response Message 2 : " + response2);
+           
+           // System.out.println("Author: " + author);
+        
+         //   Iterator<String> iterator = companyList.iterator();
+          //  while (iterator.hasNext()) {
+           //     System.out.println(iterator.next());
+           // }
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
