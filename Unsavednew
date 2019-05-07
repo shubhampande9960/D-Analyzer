@@ -147,15 +147,13 @@ public class Zabbix1
 
 }
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.Iterator;
+ 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
+ 
 
  
 public class MyJason {
@@ -167,29 +165,44 @@ public class MyJason {
         try {
  
             Object obj = parser.parse(new FileReader(
-                    "/home/spande/Desktop/Un.txt"));
-            
-  
-         //   String Zabbixalerts = (String)secretRequestMap.get("Zabbixalerts").toString(); 
+                    "/home/spande/Desktop/new1.txt"));
  
             JSONObject jsonObject = (JSONObject) obj;
-            
+ 
+            String a = (String) jsonObject.get("1.1");
+            String b = (String) jsonObject.get("1.2");
+            String c = (String) jsonObject.get("1.3");
+            String d = (String) jsonObject.get("72.6");
+            String e = (String) jsonObject.get("91.1.7");
+            String f = (String) jsonObject.get("91.2.5");
            
             JSONArray Zabbixalerts = (JSONArray) jsonObject.get("Zabbixalerts");
-            Iterator<String> iterator = Zabbixalerts.iterator();
-            while (iterator.hasNext()) {
-             System.out.println(iterator.next());
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+ 
+            System.out.print("1.1: " + a);
+            System.out.print("\t"+"1.2: "+ b);
+            System.out.print( "\t" +"1.3: "+ c);
+            System.out.print( "\t" +"72.6: "+ d);
+            System.out.print( "\t" +"91.1.7: " + e);
+            System.out.print( "\t" +"91.2.5: " + f);
+            
+ 
+            
+         //   System.out.println("\n Zabbixalerts:");
+     //       Iterator<String> iterator = Zabbixalerts.iterator();
+      //      while (iterator.hasNext()) {
+               // System.out.println(iterator.next());
+                
+             //   for(Object Zabbixalerts1 : Zabbixalerts)
+              //  {
+                 //   System.out.println("\t"+Zabbixalerts1.toString());
+               // }
+            
+ 
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
-
 
 {
   "Zabbixalerts": [
