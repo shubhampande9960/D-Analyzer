@@ -1,0 +1,140 @@
+import java.io.*;
+
+public class Class1
+
+{
+ private static BufferedReader br;
+ public static void main(String args[]) throws Exception
+
+ {
+
+  FileReader fr = new FileReader("C://Users//sree//Desktop/old.txt");
+  br = new BufferedReader(fr);
+  String s1;
+  String keyword = "{";
+  String keyword2 = "strUptQuery";
+
+  System.out.println("\n" + "Now run Zabbix1.java");
+
+  File file1 = new File("C://Users//sree//Desktop/new.txt");
+  FileOutputStream fos = new FileOutputStream(file1);
+  PrintStream out = new PrintStream(fos);
+  System.setOut(out);
+  System.out.print("{72.6:\"null\",91.1.7:\"null\",91.2.5:\"null\",1.1:\"null\",1.2:\"null\",1.3:\"null\",2.1:\"null\",2.2:\"null\"}");
+  
+  while ((s1 = br.readLine()) != null) {
+
+   if (s1.contains(keyword) && !s1.contains(keyword2))
+
+   {
+
+    System.out.println(s1.replace("\"\"", "null"));
+
+   }
+
+  }
+
+ }
+
+}
+
+
+import java.io.*;
+
+public class Class2
+
+{
+ private static BufferedReader br;
+ public static void main(String args[]) throws Exception
+
+ {
+
+  FileReader fr = new FileReader("C://Users//sree//Desktop/new.txt");
+  br = new BufferedReader(fr);
+  String s1; //,s2;
+  String requiredString = null;
+  String WholeRequiredString = ":[";
+  String StartStr = "{";
+  String EndStr = "},";
+  String EndTag = "]}";
+
+  System.out.println("\n" + "Json Request Created");
+  //  System.out.println("");
+  //System.out.println("Path => " + filepath);
+  System.out.println("\n" + "- - - - Now run MyJason.java");
+
+  File file1 = new File("C://Users//sree//Desktop/new1.txt");
+  FileOutputStream fos = new FileOutputStream(file1);
+  PrintStream out = new PrintStream(fos);
+  System.setOut(out);
+  System.out.print("");
+
+  System.out.print("{\"Zabbixalerts\"");
+
+  while ((s1 = br.readLine()) != null) {
+
+   requiredString = s1.substring(s1.indexOf("{") + 1, s1.indexOf("}"));
+
+   requiredString = StartStr + requiredString + EndStr;
+
+   WholeRequiredString = WholeRequiredString + requiredString;
+
+  }
+
+
+  WholeRequiredString = WholeRequiredString.substring(0, WholeRequiredString.length() - 1);
+
+  WholeRequiredString = WholeRequiredString + EndTag;
+
+  System.out.print(WholeRequiredString);
+
+
+ }
+
+
+}
+
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.json.CDL;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class Class3 {
+
+ private static BufferedReader br;
+ public static void main(String args[]) throws IOException {
+
+  FileReader fr = new FileReader("C://Users//sree//Desktop/new1.txt");
+  br = new BufferedReader(fr);
+
+  String jsonString = br.readLine();
+
+  JSONObject output;
+ 
+  try {
+   output = new JSONObject(jsonString);
+
+   if (output != null) {
+    JSONArray docs = output.getJSONArray("Zabbixalerts");
+    File file = new File("C://Users//sree//Desktop/Zabbixalerts.csv");
+    String csv = CDL.toString(docs);
+    FileUtils.writeStringToFile(file, csv);
+    
+    System.out.println("File Created");
+    
+   }
+  } catch (JSONException e) {
+   e.printStackTrace();
+  } catch (IOException e) {
+   e.printStackTrace();
+  }
+ }
+
+}
