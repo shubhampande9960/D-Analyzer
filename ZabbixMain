@@ -1,0 +1,239 @@
+
+import java.io.*;
+
+import org.apache.commons.io.FileUtils;
+import org.json.CDL;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+public class ZabbixMain {
+	
+	public static void main(String[] args) throws IOException, InterruptedException {
+		
+		System.out.println("\n" + "File Created on Desktop");
+		 
+		 Class1();
+		 Class2();
+		 Class3();
+		  
+	 }
+		
+public static void Class1() throws IOException
+		 {
+			
+
+		  FileReader fr = new FileReader("/home/spande/Desktop/old2.txt");
+		  BufferedReader br = new BufferedReader(fr);
+		  String s1;
+		  String keyword = "{";
+		  String keyword2 = "strUptQuery";
+
+		//  System.out.println("\n" + "Now run Zabbix1.java");
+
+		  File file1 = new File("/home/spande/Desktop/new.txt");
+		  FileOutputStream fos = new FileOutputStream(file1);
+		  PrintStream out = new PrintStream(fos);
+		  System.setOut(out);
+		  System.out.print("{72.6:\"null\",91.1.7:\"null\",91.2.5:\"null\",1.1:\"null\",1.2:\"null\",1.3:\"null\",2.1:\"null\",2.2:\"null\"}");
+		  
+		  while ((s1 = br.readLine()) != null)
+		  {
+
+		   if (s1.contains(keyword) && !s1.contains(keyword2))
+
+		   {
+
+		    System.out.println(s1.replace("\"\"", "null"));
+
+		   }
+
+		  }
+			  br.close();
+
+}
+						
+ public static void Class2() throws IOException
+ 
+ {
+
+  FileReader fr = new FileReader("/home/spande/Desktop/new.txt");
+  BufferedReader  br = new BufferedReader(fr);
+  String s1; 
+  String requiredString = "null";
+  String WholeRequiredString = ":[";
+  String StartStr = "{";
+  String EndStr = "},";
+  String EndTag = "]}";
+
+
+  File file1 = new File("/home/spande/Desktop/new1.txt");
+  FileOutputStream fos = new FileOutputStream(file1);
+  PrintStream out = new PrintStream(fos);
+  System.setOut(out);
+  System.out.print("");
+
+  System.out.print("{\"Zabbixalerts\"");
+
+while ((s1 = br.readLine()) != null) {
+
+   requiredString = s1.substring(s1.indexOf("{") + 1, s1.indexOf("}"));
+
+   requiredString = StartStr + requiredString + EndStr;
+
+   WholeRequiredString = WholeRequiredString + requiredString;
+
+  }
+
+br.close();
+ 
+  WholeRequiredString = WholeRequiredString.substring(0, WholeRequiredString.length() - 1);
+
+  WholeRequiredString = WholeRequiredString + EndTag;
+
+  System.out.print(WholeRequiredString);
+
+
+ };
+
+ public static void Class3() throws IOException
+ 
+ {
+
+  FileReader fr2 = new FileReader("/home/spande/Desktop/new1.txt");
+  BufferedReader br = new BufferedReader(fr2);
+
+  String jsonString = br.readLine();
+
+  JSONObject output;
+ 
+  try {
+   output = new JSONObject(jsonString);
+
+   if (output != null) {
+    JSONArray docs = output.getJSONArray("Zabbixalerts");
+    File file = new File("/home/spande/Desktop/Zabbixalerts.xls");
+    String csv = CDL.toString(docs);
+    FileUtils.writeStringToFile(file, csv);
+    
+    System.out.println("File Created");
+    
+   }
+   
+   br.close();
+   
+  } catch (JSONException e) {
+   e.printStackTrace();
+  } catch (IOException e) {
+   e.printStackTrace();
+  }
+ 
+ 
+
+}
+	
+}
+
+
+
+==============================
+
+
+
+
+import java.io.*;
+
+public class UnauthorizedMain {
+
+ public static void main(String[] args) throws IOException, InterruptedException {
+
+  System.out.println("\n" + "Unauthorized Alerts File Created on Desktop");
+
+  Class1();
+  Class2();
+
+ }
+
+ public static void Class1() throws IOException {
+
+  {
+
+   FileReader fr = new FileReader("/home/spande/Desktop/old1.txt");
+   BufferedReader br = new BufferedReader(fr);
+   String s1;
+
+   String keyword4 = "terminal";
+   String keyword1 = "Sequence";
+
+   File file1 = new File("/home/spande/Desktop/new.txt");
+   FileOutputStream fos = new FileOutputStream(file1);
+   PrintStream out = new PrintStream(fos);
+   System.setOut(out);
+   System.out.print("");
+
+   while ((s1 = br.readLine()) != null) {
+    if (s1.contains(keyword4)) {
+     System.out.print(s1);
+
+    }
+
+    if (s1.contains(keyword1)) {
+
+     System.out.println(s1);
+
+    }
+
+   }
+   br.close();
+
+  }
+ }
+
+ public static void Class2() throws IOException {
+
+  try {
+
+   FileReader fr = new FileReader("/home/spande/Desktop/new.txt");
+   BufferedReader br = new BufferedReader(fr);
+   String s1;
+
+   File file1 = new File("/home/spande/Desktop/unauth.xls");
+   FileOutputStream fos = new FileOutputStream(file1);
+   PrintStream out = new PrintStream(fos);
+   System.setOut(out);
+   System.out.print("");
+   System.out.println("Server" + "\t" + "Terminal_ID" + "\t" + "Store_ID" + "\t" + "Merchant_Sequence_Number" + "\t");
+
+
+   while ((s1 = br.readLine()) != null)
+
+   {
+
+    String[] arrStr = s1.split("\\s+");
+
+
+    if (!arrStr[14].equals("Store") && !arrStr[17].equals("Merchant")) {
+
+     System.out.print(arrStr[6] + "\t");
+     System.out.print(arrStr[14] + "\t");
+     System.out.print(arrStr[17] + "\t");
+     System.out.print(arrStr[21] + "\t");
+
+     System.out.println("");
+
+    }
+
+   }
+
+
+   br.close();
+
+  } catch (Exception e) {
+
+   System.out.println("Error!!!");
+  }
+
+ }
+
+}
